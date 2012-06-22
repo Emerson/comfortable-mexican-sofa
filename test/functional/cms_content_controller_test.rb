@@ -66,15 +66,12 @@ class CmsContentControllerTest < ActionController::TestCase
   
   def test_render_page_with_no_site
     Cms::Site.destroy_all
-    
-    assert_exception_raised ActionController::RoutingError, 'Site Not Found' do
-      get :render_html, :cms_path => ''
-    end
+    assert_response :success
+    assigns(:site)
   end
   
   def test_render_page_with_no_layout
     Cms::Layout.destroy_all
-    
     get :render_html, :cms_path => ''
     assert_response 404
     assert_equal 'Layout Not Found', response.body

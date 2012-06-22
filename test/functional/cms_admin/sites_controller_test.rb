@@ -102,4 +102,12 @@ class CmsAdmin::SitesControllerTest < ActionController::TestCase
       assert_equal 'Site deleted', flash[:notice]
     end
   end
+
+  def test_no_sites_redirect
+    Cms::Site.destroy_all
+    get :index
+    assert_response :redirect
+    assert_redirected_to :controller => :sites, :action => :new
+  end
+
 end
