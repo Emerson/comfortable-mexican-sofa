@@ -1,21 +1,25 @@
-<body id='cms_body' class='c_<%= params[:controller].idify %> a_<%= params[:action].idify %>'>
-  <div class='body_wrapper'>
-    <div class='left_column'>
-      <div class='left_column_content'>
+<body>
+
+  <%= render :partial => 'layouts/cms_admin/navbar' %>
+
+  <div class="container-fluid">
+
+    <div class="row-fluid">
+
+      <div class="span2 left-column">
         <%= render :partial => 'layouts/cms_admin/left'%>
-      </div>
-    </div>
-    <div class='right_column'>
-      <div class='right_column_content'>
+      </div><!-- .span2 -->
+
+      <div class="span8 center-column">
+        <%= render :partial => 'layouts/cms_admin/center' %>
+      </div><!-- .span10 -->
+
+      <div class="span2 right-column">
         <%= render :partial => 'layouts/cms_admin/right'%>
-      </div>
-    </div>
-    <div class='center_column'>
-      <%= render :partial => 'layouts/cms_admin/center' %>
-      <div class='sofa'>
-        <a href='https://github.com/comfy' target='_blank'>ComfortableMexicanSofa</a>
-        <span class='version'><%= ComfortableMexicanSofa::VERSION %></span>
-      </div>
-    </div>
-  </div>
+      </div><!-- .span2 -->
+
+    </div><!-- .row-fluid -->
+
+  </div><!-- .container-fluid -->
+
 </body>
