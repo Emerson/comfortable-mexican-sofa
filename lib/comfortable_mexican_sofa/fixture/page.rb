@@ -46,7 +46,19 @@ module ComfortableMexicanSofa::Fixture::Page
             }
           end
         end
-        
+
+        # handle image fixtures
+        Dir.glob("#{path}/*.{jpg,png,gif}").each do |block_path|
+          identifier = block_path.split('/').last.gsub(/\.(jpg|png|gif)\z/, '')
+          blocks_to_clear.delete(identifier)
+          if fresh_fixture?(page, block_path)
+            blocks_attributes << {
+              :identifier => identifier,
+              :content    => File.open(block_path)
+            }
+          end
+        end
+
         # deleting removed blocks
         page.blocks.where(:identifier => blocks_to_clear).destroy_all
         
