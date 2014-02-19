@@ -22,7 +22,7 @@ module ComfortableMexicanSofa::CmsManageable
         :class_name => 'Cms::Block'
 
       # -- Callbacks --------------------------------------------------------
-      before_save  :set_content_cache
+      before_save  :set_content_cache, if: Proc.new { |record| record.has_attribute? :content_cache }
 
     end
   end
